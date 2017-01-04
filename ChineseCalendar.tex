@@ -1,0 +1,255 @@
+% !TEX program=lualatex
+
+% nobabel means you'll need to provide your own month names, week day headings,
+% etc
+\documentclass[12pt,nobabel,sundayweek]{cdcalendar}
+
+%% and here we do some settings for a calendar in Chinese
+%% (*not* the lunar calendar! Just localising the Gregorian calendar into
+%% Chinese)
+\usepackage{zh-mod}
+
+\setmainfont[Ligatures=TeX]{EB Garamond}
+\setsansfont[Ligatures=TeX,BoldItalicFont=Fira Sans Italic,BoldFont=Fira Sans,Numbers=OldStyle]{Fira Sans Light}
+
+\title{Desktop Calendar (fits CD jewel case) with Chinese Localisation}
+
+\usepackage{graphicx}
+\usepackage{fontawesome}
+\usepackage{wallpaper}
+\usepackage{fontspec}
+
+%\newfontfamily\gudian{WenYue-GuDianMingChaoTi-NC-W5.otf}
+
+
+\graphicspath{{img/}}
+
+%% Define all event mark styles here
+\tikzset{holiday/.style={rectangle,fill=orange!70}}
+\tikzset{pink icon/.style={text=Pink,font=\large}}
+\tikzset{blue icon/.style={text=SkyBlue,font=\large}}
+
+\begin{document}
+
+%%%%%%
+% Cover
+%%%%%%
+
+% Remove this line if you feel the background pattern is too annoying
+% \TileWallPaper{.5\paperwidth}{.5\paperheight}{ricepaper_v3}
+\TileWallPaper{.5\paperwidth}{.1\paperheight}{lightpaperfibers}
+
+% \coverBgColor{RoyalBlue!40!black}
+\coverImage[\large{丙申年腊月初五，思宇}]
+{new_year}
+
+\coverTitle[%
+font=\fontsize{30pt}{32pt}\kaishu\bfseries,
+text width=\linewidth,align=flush right,red!50!RedViolet]
+{二〇一七年历}
+
+\makeCover
+% 由于须要以LuaLaTeX编译，封面变换了字体大小以后，会影响到后面英汉字符之间的距离，只好再强行加这一行来修正。
+\ltjsetparameter{xkanjiskip=.25\zw plus 1pt minus 1pt}
+
+%%%% Remove this page if you don't need it --
+%%%% just to show the actual output
+%{\centering
+%    \includegraphics[width=\textwidth]{actual}
+%    \par}
+\vspace*{\fill}
+
+\begin{center}
+    {\fontsize{40pt}{\baselineskip}\kaishu 喜看阳春花千树
+        \vspace{3cm}
+    笑饮新岁酒一杯
+    \par}
+\end{center}
+
+\vspace*{\fill}
+
+\clearpage
+%%%%
+
+% You may find the gap between illustrations and events too wide
+% Use this length to lessen it
+\setlength{\lessIllusSkip}{1.5\ccwd}
+
+
+%%%%%%
+% Some settings for the monthly calendars
+%%%%%%
+\dayHeadingStyle{font=\sffamily\color{gray!90}}
+\sundayColor{red}
+\monthTitleStyle{font={\fontsize{42pt}{44pt}\bfseries\sffamily\fangsong}, red!50!RedViolet}
+\eventStyle{\scriptsize\songti}
+\renewcommand\printeventname[1]{{\heiti #1}}
+
+\illustration[人物双鸡，林墉，当代画家。]
+{8.5cm}{Lin_yong}
+
+\begin{monthCalendar}{2017}{01}
+
+\event[mark style=holiday]{2017-01-05}{}{腊八节}
+%%\event[mark style=holiday]{2017-01-01}{2}{元旦+补休}
+\event[mark style=holiday]{2017-01-27}{2017-2-2}{春节连休}
+%\event[mark style=blue icon, marker=\faBriefcase]
+%{2017-01-22}{}{春节调休上班}
+
+\end{monthCalendar}
+
+\clearpage
+
+% 这一页"图"和月历距离可以大一些
+%\setlength{\lessIllusSkip}{0pt}
+%\otherstuff[金玉良言，苦口良药]
+%{8.5cm}{{\fontsize{48pt}{52pt}\fangsong\textcolor{red}{写}}%
+%        {\LARGE\kaishu，不停地写。}}
+
+\illustration[柳。金农，清代书画家，扬州八怪之首。字寿门、司农、吉金，号冬心先生、稽留山民、曲江外史、昔耶居士……]
+{8.5cm}{Jin_Nong_Willow}
+
+\begin{monthCalendar}{2017}{02}
+
+\event[mark style=holiday]{2017-01-27}{2017-02-02}{春节连休}
+\event[mark style=holiday]{2017-02-11}{}{元宵节}
+%\event[mark style=blue icon, marker=\faBriefcase]
+%{2017-02-04}{}{春节调休上班}
+%\event[mark style=pink icon,marker=\faBirthdayCake]{2017-02-14}{}{朋友生日}
+%\event{2017-02-22}{}{稿件死线！！}
+
+\end{monthCalendar}
+
+\clearpage
+
+\illustration[花。金农，清代书画家，扬州八怪之首。字寿门、司农、吉金，号冬心先生、稽留山民、曲江外史、昔耶居士……]
+{8.5cm}{Flower_JinNong}
+
+\begin{monthCalendar}{2017}{03}
+    
+\event{2017-03-05}{}{惊蛰}
+\event[mark style=holiday]{2017-03-08}{}{妇女节}
+\event{2017-03-20}{}{春分}
+
+\end{monthCalendar}
+
+\clearpage
+
+\illustration[借问酒家何处有？牧童遥指杏花村。]
+{8.5cm}{Qingming}
+
+\begin{monthCalendar}{2017}{04}
+
+\event{2017-04-04}{}{清明}
+\event{2017-04-20}{}{谷雨}
+\event[mark style=holiday]{2017-04-29}{2017-05-01}{五一小长假}
+
+\end{monthCalendar}
+
+\clearpage
+
+%\illustration[借问酒家何处有？牧童遥指杏花村。]
+%{8.5cm}{Qingming}
+
+\illustration[牡丹富贵。陆抑非，名翀，自号非翁，又名苏叟。]
+{8.5cm}{Lu_yifei_mudanfugui}
+
+\begin{monthCalendar}{2017}{05}
+
+\event[mark style=holiday]{2017-04-29}{2017-05-01}{五一小长假}
+\event{2017-05-05}{}{立夏}
+\event{2017-05-21}{}{小满}
+\event[mark style=holiday]{2017-05-28}{2017-05-30}{端午小长假}
+
+\end{monthCalendar}
+
+\clearpage
+
+\illustration[水牛。黄胄，当代画家，名淦堂，字映斋。]
+{8.5cm}{Huang_zhou_shuiniu}
+
+\begin{monthCalendar}{2017}{06}
+    
+\event{2017-06-05}{}{芒种}
+\event{2017-06-21}{}{夏至}
+
+\end{monthCalendar}
+
+\clearpage
+
+\illustration[虾。张大壮，当代画家，原名颐，又名心源，字养初，号养卢，别署富春山人。]
+{8.5cm}{Zhang_dazhuang_xia}
+
+\begin{monthCalendar}{2017}{07}
+
+\event{2017-07-07}{}{小暑}
+\event{2017-07-22}{}{大暑}
+
+\end{monthCalendar}
+
+\clearpage
+
+\illustration[松鸟。黎雄才，当代画家。]
+{8.5cm}{Li_xiongcai_songniao}
+
+\begin{monthCalendar}{2017}{08}
+
+\event{2017-08-07}{}{立秋}
+\event{2017-08-23}{}{处暑}
+\event[mark style=holiday]{2017-08-28}{}{七夕}
+
+\end{monthCalendar}
+
+\clearpage
+
+\illustration[三峡行舟。黄君璧，当代画家，原名允瑄，本名韫之，号君璧。]
+{8.5cm}{Huang_junbi_sanxiaxingzhou}
+
+\begin{monthCalendar}{2017}{09}
+
+\event{2017-09-07}{}{白露}
+\event[mark style=holiday]{2017-09-10}{}{教师节快乐}
+\event{2017-09-23}{}{秋分}
+
+\end{monthCalendar}
+
+\clearpage
+
+\illustration[菊。黎雄才，当代画家。]
+{8.5cm}{Li_xiongcai_ju}
+
+\begin{monthCalendar}{2017}{10}
+
+\event[mark style=holiday]{2017-10-01}{2017-10-08}{举国同庆}
+\event[mark style=holiday]{2017-10-04}{}{中秋节}
+\event{2017-10-08}{}{寒露}
+\event{2017-10-23}{}{霜降}
+\event[mark style=holiday]{2017-10-28}{}{重阳}
+\end{monthCalendar}
+
+\clearpage
+
+\illustration[独钓寒江雪。赵少昂，当代画家，字叔仪。]
+{8.5cm}{Zhao_shaoang_dudiaohanjiangxue}
+
+\begin{monthCalendar}{2017}{11}
+    
+\event{2017-11-07}{}{立冬}
+\event{2017-11-22}{}{小雪}
+
+\end{monthCalendar}
+
+\clearpage
+
+\illustration[洪荒风雪。黄胄，当代画家，名淦堂，字映斋。]
+{8.5cm}{Huang_zhou_honghuangfengxue}
+
+\begin{monthCalendar}{2017}{12}
+
+\event{2017-12-07}{}{大雪}
+\event{2017-12-22}{}{冬至}
+\event[mark style=holiday]{2017-12-25}{}{圣诞}
+
+\end{monthCalendar}
+
+\end{document}
